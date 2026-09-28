@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CiPHA Markets — The 500 Fellowship Batch 37</title>
+<style>
+  @page {
+    size: 13.333in 7.5in;
+    margin: 0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #F5F0E8;
+    color: #2C2A26;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 13.333in;
+    height: 7.5in;
+    padding: 0.68in 0.9in 0.7in;
+    page-break-after: always;
+    break-after: page;
+    position: relative;
+    overflow: hidden;
+    background: #F5F0E8;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Faint geometric curves in corners */
+  .slide::before,
+  .slide::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border: 1.5px solid rgba(139, 105, 20, 0.12);
+    border-radius: 50%;
+  }
+  .slide::before {
+    width: 4.2in;
+    height: 4.2in;
+    top: -1.8in;
+    left: -1.6in;
+    box-shadow: 0 0 0 28px rgba(139, 105, 20, 0.045);
+  }
+  .slide::after {
+    width: 3.6in;
+    height: 3.6in;
+    bottom: -1.5in;
+    right: -1.4in;
+    box-shadow: 0 0 0 22px rgba(139, 105, 20, 0.04);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8B6914;
+    font-weight: 600;
+    margin-bottom: 0.22in;
+    position: relative;
+    z-index: 1;
+  }
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: #1A1814;
+    margin-bottom: 0.26in;
+    position: relative;
+    z-index: 1;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.2;
+    color: #1A1814;
+    margin-bottom: 0.28in;
+    position: relative;
+    z-index: 1;
+  }
+  .sub {
+    font-size: 17px;
+    line-height: 1.55;
+    color: #6B6560;
+    max-width: 10.5in;
+    position: relative;
+    z-index: 1;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0.34in;
+    left: 0.9in;
+    right: 0.9in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #9A948C;
+    letter-spacing: 0.03em;
+    z-index: 2;
+  }
+  .footer .brand { color: #8B6914; font-weight: 500; }
+
+  /* Title slide */
+  .title-slide { justify-content: center; }
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 0.4in;
+    position: relative;
+    z-index: 1;
+  }
+  .logo-mark .mark {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #8B6914;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 22px;
+    color: #F5F0E8;
+  }
+  .logo-mark .word {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1A1814;
+  }
+  .logo-mark .word span { color: #8B6914; }
+  .elevator {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #5C574F;
+    max-width: 11in;
+    margin-bottom: 0.4in;
+    position: relative;
+    z-index: 1;
+  }
+  .meta-row {
+    display: flex;
+    gap: 0.35in;
+    flex-wrap: wrap;
+    margin-top: 0.1in;
+    position: relative;
+    z-index: 1;
+  }
+  .meta-pill {
+    font-size: 13px;
+    color: #5C574F;
+    border: 1px solid #E0D8CC;
+    background: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(26, 24, 20, 0.04);
+  }
+  .meta-pill strong { color: #1A1814; font-weight: 600; }
+
+  /* Layout helpers */
+  .cols { display: flex; gap: 0.4in; flex: 1; position: relative; z-index: 1; }
+  .cols > * { flex: 1; }
+  .cols-2-1 > :first-child { flex: 1.35; }
+  .cols-1-1 > * { flex: 1; }
+  .cols-3 > * { flex: 1; }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    border-radius: 16px;
+    padding: 0.26in 0.28in;
+    box-shadow: 0 2px 10px rgba(26, 24, 20, 0.04);
+    position: relative;
+    z-index: 1;
+  }
+  .card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8B6914;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .card p, .card li {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #4A4640;
+  }
+  .card ul { padding-left: 1.1em; }
+  .card li { margin-bottom: 6px; }
+  .card.bad { border-color: #E8D0C8; background: #FFF9F7; }
+  .card.bad h3 { color: #A85A3A; }
+  .card.good { border-color: #D8E0C8; background: #FAFBF5; }
+  .card.good h3 { color: #6B7A3A; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.26in;
+    margin-bottom: 0.28in;
+    position: relative;
+    z-index: 1;
+  }
+  .stat {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    border-radius: 16px;
+    padding: 0.26in 0.26in;
+    box-shadow: 0 2px 10px rgba(26, 24, 20, 0.04);
+  }
+  .stat .num {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1A1814;
+    line-height: 1.1;
+  }
+  .stat .num.accent { color: #8B6914; }
+  .stat .label {
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #6B6560;
+    line-height: 1.35;
+  }
+
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    position: relative;
+    z-index: 1;
+  }
+  .bullet-list li {
+    font-size: 15px;
+    line-height: 1.45;
+    color: #4A4640;
+    padding-left: 22px;
+    position: relative;
+  }
+  .bullet-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8B6914;
+  }
+
+  /* HOW IT WORKS — reference layout */
+  .how-slide {
+    align-items: center;
+    text-align: center;
+    padding-top: 0.55in;
+    padding-bottom: 0.55in;
+  }
+  .how-slide .eyebrow {
+    margin-bottom: 0.18in;
+  }
+  .how-slide h2 {
+    font-size: 30px;
+    margin-bottom: 0.14in;
+    max-width: 10in;
+  }
+  .how-slide .sub {
+    margin: 0 auto 0.32in;
+    font-size: 15.5px;
+    max-width: 9in;
+  }
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 8.6in;
+    position: relative;
+    z-index: 1;
+  }
+  .how-step {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    border-radius: 18px;
+    padding: 0.16in 0.28in;
+    display: flex;
+    align-items: baseline;
+    gap: 0.22in;
+    text-align: left;
+    box-shadow: 0 2px 12px rgba(26, 24, 20, 0.05);
+  }
+  .how-step .n {
+    font-size: 15px;
+    font-weight: 600;
+    color: #8B6914;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    min-width: 0.4in;
+  }
+  .how-step .body {
+    flex: 1;
+  }
+  .how-step .t {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1814;
+    display: inline;
+  }
+  .how-step .d {
+    font-size: 14.5px;
+    color: #6B6560;
+    display: inline;
+  }
+  .how-step .sep {
+    color: #6B6560;
+    margin: 0 4px;
+  }
+  .cta-pill {
+    display: inline-block;
+    margin-top: 0.28in;
+    background: #8B6914;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 28px;
+    border-radius: 999px;
+    letter-spacing: 0.01em;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(139, 105, 20, 0.25);
+  }
+  .how-brand-line {
+    margin-top: 0.22in;
+    font-size: 12px;
+    color: #9A948C;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .screenshot-ph {
+    border: 1.5px dashed #D4CBBC;
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 0.26in 0.2in;
+    text-align: center;
+    color: #9A948C;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-height: 1.1in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 1px 4px rgba(26, 24, 20, 0.03);
+    position: relative;
+    z-index: 1;
+  }
+  .screenshot-ph .tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8B6914;
+    letter-spacing: 0.08em;
+  }
+  .screenshot-ph .hint {
+    font-size: 11px;
+    color: #9A948C;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .ph-row {
+    display: flex;
+    gap: 0.26in;
+    position: relative;
+    z-index: 1;
+  }
+  .ph-row > * { flex: 1; }
+
+  /* Chart */
+  .mini-chart {
+    background: #FFFFFF;
+    border: 1px solid #E8E0D4;
+    border-radius: 16px;
+    padding: 0.26in;
+    box-shadow: 0 2px 10px rgba(26, 24, 20, 0.04);
+    position: relative;
+    z-index: 1;
+  }
+  .mini-chart h3 {
+    font-size: 13px;
+    color: #6B6560;
+    font-weight: 500;
+    margin-bottom: 0.2in;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label {
+    width: 1.55in;
+    font-size: 12.5px;
+    color: #4A4640;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 26px;
+    background: #F0EAE0;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: #8B6914;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+  .bar-val {
+    width: 0.55in;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1814;
+    flex-shrink: 0;
+  }
+
+  .note {
+    font-size: 12.5px;
+    color: #8A847C;
+    margin-top: 0.18in;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.26in;
+    margin-bottom: 0.26in;
+    position: relative;
+    z-index: 1;
+  }
+  .wedge {
+    background: #FFFFFF;
+    border: 1.5px solid #8B6914;
+    border-radius: 16px;
+    padding: 0.26in 0.3in;
+    box-shadow: 0 2px 10px rgba(139, 105, 20, 0.08);
+    position: relative;
+    z-index: 1;
+  }
+  .wedge h3 {
+    font-size: 14px;
+    color: #8B6914;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .wedge p {
+    font-size: 14.5px;
+    color: #4A4640;
+    line-height: 1.5;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-item {
+    display: flex;
+    gap: 0.26in;
+    min-height: 0.68in;
+  }
+  .tl-rail {
+    width: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tl-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #8B6914;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .tl-line {
+    width: 2px;
+    flex: 1;
+    background: #E0D8CC;
+    margin: 4px 0;
+  }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-body .when {
+    font-size: 11.5px;
+    color: #8B6914;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tl-body .what {
+    font-size: 14.5px;
+    color: #3A3630;
+    line-height: 1.4;
+  }
+
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 0.22in;
+  }
+  .link-row a, .link-row span {
+    font-size: 12.5px;
+    color: #5C574F;
+    text-decoration: none;
+  }
+  .link-row .k { color: #8B6914; font-weight: 600; }
+
+  .tagline {
+    font-size: 13px;
+    color: #8B6914;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.18in;
+    position: relative;
+    z-index: 1;
+  }
+
+  .content-block {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Title / elevator -->
+<section class="slide title-slide">
+  <div class="logo-mark">
+    <div class="mark">C</div>
+    <div class="word">CiPHA <span>Markets</span></div>
+  </div>
+  <p class="tagline">The 500 Fellowship · Batch 37</p>
+  <h1>AI agents on your trading account.</h1>
+  <p class="elevator">
+    An AI agent platform to help retail and prop traders who already have broker accounts
+    with inconsistent manual execution by running a multi-agent council that deliberates,
+    validates in code, and executes on their connected account—non-custodial, with Autonomy
+    or Do-it confirmation.
+  </p>
+  <div class="meta-row">
+    <div class="meta-pill"><strong>Founder</strong>&nbsp; Sylvester Kwabena Dapaah</div>
+    <div class="meta-pill"><strong>Solo</strong>&nbsp; KNUST CS · Ghana</div>
+    <div class="meta-pill"><strong>cipha.app</strong></div>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>1 / 10</span>
+  </div>
+</section>
+
+<!-- 2. Problem -->
+<section class="slide">
+  <div class="eyebrow">Problem</div>
+  <h2>Traders already have accounts.<br/>Execution is still the bottleneck.</h2>
+  <div class="cols cols-1-1" style="margin-top: 0.08in;">
+    <div class="card bad">
+      <h3>What traders live with today</h3>
+      <ul>
+        <li>Manual chart-watching and late entries/exits</li>
+        <li>Signal groups that tell you <em>what</em>—not how to execute on <em>your</em> account</li>
+        <li>Copy-trading and black-box bots that obscure risk and control</li>
+        <li>Prop challenges where inconsistent execution kills funded status</li>
+      </ul>
+    </div>
+    <div class="card good">
+      <h3>What they actually need</h3>
+      <ul>
+        <li>Controlled AI agents on the broker/prop account they already own</li>
+        <li>Non-custodial — capital stays with their broker</li>
+        <li>Transparent deliberation + code validation before any order</li>
+        <li>Choice: full Autonomy, or confirm with Do it</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">CiPHA Markets is not a signals app. Agents run on the trader’s own connected account.</p>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>2 / 10</span>
+  </div>
+</section>
+
+<!-- 3. Solution -->
+<section class="slide">
+  <div class="eyebrow">Solution</div>
+  <h2>Multi-agent council → validate → execute.</h2>
+  <div class="cols cols-3" style="margin-bottom: 0.26in;">
+    <div class="card">
+      <h3>1. Deliberate</h3>
+      <p>A multi-agent council debates the trade thesis on the trader’s connected account context.</p>
+    </div>
+    <div class="card">
+      <h3>2. Validate</h3>
+      <p>Deterministic code checks the proposal before anything reaches the broker.</p>
+    </div>
+    <div class="card">
+      <h3>3. Execute</h3>
+      <p><strong>Autonomy</strong> auto-executes, or the trader confirms with <strong>Do it</strong>.</p>
+    </div>
+  </div>
+  <div class="cols" style="gap: 0.26in;">
+    <div class="card" style="flex: 1.2;">
+      <h3>Non-custodial by design</h3>
+      <p>AI agents on the trader’s own broker or prop account. CiPHA never holds funds.</p>
+    </div>
+    <div class="card" style="flex: 1.8;">
+      <h3>Integrations live</h3>
+      <p>cTrader · TradeLocker · Match-Trader · MetaApi (MT4/MT5) · Deriv</p>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>3 / 10</span>
+  </div>
+</section>
+
+<!-- 4. How it works — MATCH reference -->
+<section class="slide how-slide">
+  <div class="eyebrow">How it works</div>
+  <h2>From your account to a trade, in the open.</h2>
+  <p class="sub">Connect any broker or prop account. The desk debates, then trades it — under your rules.</p>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="n">01</div>
+      <div class="body">
+        <span class="t">Connect your account</span><span class="sep">—</span><span class="d">Link any broker or prop. Money stays where it is.</span>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="n">02</div>
+      <div class="body">
+        <span class="t">The desk debates</span><span class="sep">—</span><span class="d">Bull, bear, validator — one plan: entry, stop, target.</span>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="n">03</div>
+      <div class="body">
+        <span class="t">It trades to your rules</span><span class="sep">—</span><span class="d">Agents place the trade. Prop limits stay enforced.</span>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="n">04</div>
+      <div class="body">
+        <span class="t">You audit every session</span><span class="sep">—</span><span class="d">Full debate and outcome on the record. Nothing hidden.</span>
+      </div>
+    </div>
+  </div>
+  <div class="cta-pill">Connect your account</div>
+  <div class="how-brand-line">CiPHA Markets · AI agents on your account</div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets</span>
+    <span>4 / 10</span>
+  </div>
+</section>
+
+<!-- 5. Traction -->
+<section class="slide">
+  <div class="eyebrow">Traction · Jun–Sep 2026</div>
+  <h2>Paid users. Prop passes. Zero ad spend.</h2>
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="num accent">19</div>
+      <div class="label">Paid active users<br/>(prop + real accounts only — no demo)</div>
+    </div>
+    <div class="stat">
+      <div class="num accent">~10k GHS</div>
+      <div class="label">Subscription revenue<br/>Jun–Sep 2026 (incl. product pauses)</div>
+    </div>
+    <div class="stat">
+      <div class="num accent">6</div>
+      <div class="label">Prop-firm accounts passed<br/>(3 in first live week)</div>
+    </div>
+  </div>
+  <div class="cols" style="gap: 0.26in;">
+    <div class="mini-chart" style="flex: 1.1;">
+      <h3>Prop accounts passed (cumulative)</h3>
+      <div class="bar-row">
+        <div class="bar-label">First live week</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 50%;">3</div></div>
+        <div class="bar-val">3</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Through Sep 2026</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 100%;">6</div></div>
+        <div class="bar-val">6</div>
+      </div>
+      <p class="note" style="margin-top: 12px;">Latest pass: Wed before 26 Sep 2026. More passed late Aug–now.</p>
+    </div>
+    <div style="flex: 1;">
+      <ul class="bullet-list">
+        <li>Open web app ~every 4 hours</li>
+        <li>Zero marketing spend</li>
+        <li>Users mostly Ghanaian non-friends; 1 Indian (early X post); 1 Nigerian paid once</li>
+        <li>Free month → 30+ new users to monetize after 26 Sep 2026</li>
+        <li>Price path: 55 GHS/mo → now $79/mo (changed ~5×; people still paid from day one)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>5 / 10</span>
+  </div>
+</section>
+
+<!-- 6. Business model -->
+<section class="slide">
+  <div class="eyebrow">Business model</div>
+  <h2>Simple SaaS. Honest pricing history.</h2>
+  <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="stat">
+      <div class="num accent">$79<span style="font-size:20px;color:#6B6560;">/mo</span></div>
+      <div class="label">Current subscription price</div>
+    </div>
+    <div class="stat">
+      <div class="num">55 GHS<span style="font-size:16px;color:#6B6560;">/mo</span></div>
+      <div class="label">Started here — payers from day one</div>
+    </div>
+    <div class="stat">
+      <div class="num">~10k GHS</div>
+      <div class="label">Jun–Sep 2026 subscription revenue<br/>(multiple product pauses incl. Sep)</div>
+    </div>
+  </div>
+  <div class="cols" style="gap: 0.26in;">
+    <div class="card">
+      <h3>Model</h3>
+      <p>Monthly SaaS for AI agents on the trader’s own connected broker/prop account. No custody of capital. No demo accounts in the paid base.</p>
+    </div>
+    <div class="card">
+      <h3>Pricing honesty</h3>
+      <p>Price changed ~5 times (55 GHS/mo → $79/mo). People still paid. Free month running into a 30+ user cohort to monetize after 26 Sep 2026.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>6 / 10</span>
+  </div>
+</section>
+
+<!-- 7. Competition -->
+<section class="slide">
+  <div class="eyebrow">Competition</div>
+  <h2>Not another signals feed.</h2>
+  <div class="vs-grid">
+    <div class="card bad">
+      <h3>Signals apps</h3>
+      <p>Tell traders what to do. Execution and account risk stay on the human — inconsistent and slow.</p>
+    </div>
+    <div class="card bad">
+      <h3>Copy trading</h3>
+      <p>Blind following. Little visibility into why a trade fires on your account.</p>
+    </div>
+    <div class="card bad">
+      <h3>Black-box bots</h3>
+      <p>Opaque automation. Hard to trust for prop rules and retail risk control.</p>
+    </div>
+    <div class="card bad">
+      <h3>Manual trading</h3>
+      <p>Full control, but fatigue and inconsistency — especially under prop constraints.</p>
+    </div>
+  </div>
+  <div class="wedge">
+    <h3>CiPHA wedge</h3>
+    <p>
+      AI agents on <strong>your</strong> broker/prop account — non-custodial. Multi-agent council deliberates,
+      deterministic code validates, then Autonomy auto-executes or you confirm with Do it.
+      Controlled agents, not a signals app.
+    </p>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>7 / 10</span>
+  </div>
+</section>
+
+<!-- 8. Market -->
+<section class="slide">
+  <div class="eyebrow">Market</div>
+  <h2>Beachhead where we already collect.</h2>
+  <div class="cols cols-1-1" style="margin-top: 0.05in;">
+    <div class="card">
+      <h3>Beachhead</h3>
+      <ul>
+        <li>Paying retail and prop traders on platforms we already integrate</li>
+        <li>cTrader, TradeLocker, Match-Trader, MetaApi MT4/MT5, Deriv</li>
+        <li>Prop + real accounts only (no demo) — users who feel execution pain</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Expansion path</h3>
+      <ul>
+        <li>Grow inside existing broker/prop ecosystems we support</li>
+        <li>Add integrations where traders already fund and trade</li>
+        <li>Monetize free-month cohort (30+ after 26 Sep 2026), then widen GTM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top: 0.26in;">
+    <h3>What we will not claim here</h3>
+    <p>No invented TAM/SAM/SOM figures. Demand signal so far: 19 paid active users, ~10k GHS Jun–Sep revenue, 6 prop accounts passed, zero marketing spend, payers from day one through ~5 price changes.</p>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>8 / 10</span>
+  </div>
+</section>
+
+<!-- 9. Progress / milestones -->
+<section class="slide">
+  <div class="eyebrow">Progress</div>
+  <h2>Shipped. Paid. Passing props.</h2>
+  <div class="cols" style="gap: 0.4in;">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="when">Early</div>
+          <div class="what">First payers from day one (started 55 GHS/mo)</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="when">First live week</div>
+          <div class="what">3 prop-firm accounts passed</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="when">Late Aug → Sep 2026</div>
+          <div class="what">More prop passes → 6 total (latest Wed before 26 Sep)</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="when">Jun–Sep 2026</div>
+          <div class="what">~10k GHS revenue · 19 paid active · ship ~every 4 hours · free month → 30+</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="when">Next</div>
+          <div class="what">Monetize free cohort · incorporate (US/Cayman/Singapore) · SF for Batch 37</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 0.85; display: flex; flex-direction: column; gap: 0.2in;">
+      <div class="card">
+        <h3>Ship cadence</h3>
+        <p>Open web app roughly every 4 hours. Multiple product pauses (including Sep) while still collecting subscription revenue.</p>
+      </div>
+      <div class="card">
+        <h3>Batch 37</h3>
+        <p>Willing to relocate to SF. Kickoff 30 Nov 2026. Entity not yet incorporated; open to US, Cayman, or Singapore.</p>
+      </div>
+      <div class="screenshot-ph" style="flex: 1; min-height: 0.85in;">
+        <div class="tag">Screenshot TBD</div>
+        <div class="hint">Live product / prop pass evidence</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · AI agents on your account</span>
+    <span>9 / 10</span>
+  </div>
+</section>
+
+<!-- 10. Team + ask / contacts -->
+<section class="slide">
+  <div class="eyebrow">Team</div>
+  <h2>Sylvester Kwabena Dapaah — solo founder.</h2>
+  <div class="cols" style="gap: 0.32in;">
+    <div style="flex: 1.2;">
+      <div class="card" style="margin-bottom: 0.2in;">
+        <h3>Now</h3>
+        <p>~20 · KNUST Computer Science, Level 200 · Bibiani / Kumasi, Ghana · Solo</p>
+      </div>
+      <div class="card">
+        <h3>Prior</h3>
+        <ul>
+          <li>PRESEC entrepreneur — shoutout envelopes; Best Student Entrepreneur</li>
+          <li>Rekon360 — ~43 users; bank intros Ecobank / GCB / OISL</li>
+          <li>Taught prompt orchestration at SocialTech (~2 months, past)</li>
+          <li>SE internship, Anansenet — Aug–Sep 2026 (~2 months)</li>
+        </ul>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <div class="card" style="margin-bottom: 0.2in;">
+        <h3>Plan</h3>
+        <ul>
+          <li>Remain solo through early product focus</li>
+          <li>Hire GTM later</li>
+          <li>Willing to relocate to SF for Batch 37 (kickoff 2026-11-30)</li>
+          <li>Incorporate: open to US / Cayman / Singapore</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Contact &amp; links</h3>
+        <p style="margin-bottom: 10px;">
+          dapaahsylvester5@gmail.com<br/>
+          sylvester@cipha.app
+        </p>
+        <div class="link-row" style="margin-top: 0;">
+          <span><span class="k">Web</span> cipha.app</span>
+          <span><span class="k">GitHub</span> github.com/Remmy1-AI/cipha-markets</span>
+          <span><span class="k">LinkedIn</span> linkedin.com/in/sylvester-dapaah</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="brand">CiPHA Markets · The 500 Batch 37</span>
+    <span>10 / 10</span>
+  </div>
+</section>
+
+</body>
+</html>
